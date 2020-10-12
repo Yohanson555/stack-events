@@ -1,10 +1,15 @@
-import React from 'react'
+import React from 'react';
+import MyComponent from './MyComponent';
+import './App.css';
 
-import { ExampleComponent } from 'stack-events'
-import 'stack-events/dist/index.css'
+import { StackEvents  } from 'stack-events';
 
-const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+function App() {
+  return (
+    <StackEvents events={["keydown", "mousedown"]}>
+      <MyComponent index={1} />
+    </StackEvents>
+  );
 }
 
-export default App
+export default App;
