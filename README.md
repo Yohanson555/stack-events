@@ -1,6 +1,6 @@
 ### Overview
 
-`stack-events` is a simple lightweight JavaScript module for implementing state machine arcitecture of component event handling
+`stack-events` is a simple JavaScript module for implementing state machine arcitecture of component event handling
 
 ### Installation
 
