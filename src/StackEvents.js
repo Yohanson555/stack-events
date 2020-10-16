@@ -44,11 +44,25 @@ class StackEvents extends React.Component {
     _push(evetlsHandlers) {
         const { stack } = this.state;
 
-        //TODO: make a validation ov evetlsHandlers: this should be an object with "key": function values
-        // сформировать свой объект; все имена событий должны быть lowercase
+        if (evetlsHandlers && _.isPlainObject(evetlsHandlers) && _.size(evetlsHandlers) > 0) {
+            const handlers = {};
 
+            _.forEach(evetlsHandlers, (f, k) => {
+                if (k && _.isString(k) && f && _.isFunction(f)) {
+                    handlers[k] = f;
+                }
+            });
 
-        this.setState({stack: [ ...stack, evetlsHandlers]});
+            if (_.size(handlers) > 0) {
+                this.setState({stack: [ ...stack, evetlsHandlers]});
+                return
+            }
+        } 
+
+        console.error("wrong handlers object passed; (<string>: <function>) map expected;");
+        console.error("handlers: ", evetlsHandlers);
+
+        throw new Error("Wrong handlers object passed; view logs for details");        
     }
 
     _pop() {
